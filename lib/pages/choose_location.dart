@@ -16,13 +16,22 @@ class _ChooseLocationState extends State<ChooseLocation> {
     WorldTimeService instance = WorldTimeService(
         url: locations[index].url, location: locations[index].location,flag: locations[index].flag);
     await instance.getTime();
-    Navigator.pushNamed(context, Home.routeName, arguments: {
+//    Navigator.pushNamed(context, Home.routeName, arguments: {
+//      'location': instance.location,
+//      'flag': instance.flag,
+//      'isDayTime': instance.isDayTime,
+//      'url': instance.url,
+//      'time': instance.time,
+//    });
+    Navigator.pop(context,
+        {
       'location': instance.location,
       'flag': instance.flag,
       'isDayTime': instance.isDayTime,
       'url': instance.url,
       'time': instance.time,
-    });
+    }
+    );
   }
 
   @override

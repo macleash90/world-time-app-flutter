@@ -18,14 +18,14 @@ class _LoadingState extends State<Loading> {
         flag: 'argentina.png',
         location: 'Argentina');
     await worldTime.getTime();
-//    Navigator.pushReplacementNamed(context, Home.routeName, arguments: {
-//      'location': worldTime.location,
-//      'flag': worldTime.flag,
-//      'url': worldTime.url,
-//      'time': worldTime.time,
-//      'isDayTime': worldTime.isDayTime,
-//    });
-  Navigator.pushReplacementNamed(context, ChooseLocation.routeName );
+    Navigator.pushReplacementNamed(context, Home.routeName, arguments: {
+      'location': worldTime.location,
+      'flag': worldTime.flag,
+      'url': worldTime.url,
+      'time': worldTime.time,
+      'isDayTime': worldTime.isDayTime,
+    });
+//  Navigator.pushReplacementNamed(context, ChooseLocation.routeName );
 //    setState(() {
 //      time = worldTime.time;
 //    });

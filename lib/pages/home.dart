@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_world_time_app/pages/choose_location.dart';
 class Home extends StatefulWidget {
   static final String routeName = '/home';
   @override
@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    data = ModalRoute.of(context).settings.arguments;
+    data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
 //    print(data);
     img = (data['isDayTime']) ? 'day.png' : 'night.png';
     Color bgColor = data['isDayTime'] ? Colors.blue : Colors.indigo;
@@ -43,10 +43,20 @@ class _HomeState extends State<Home> {
                     color: Colors.blue,
                   ),
                   label: Text('Go To Locations'),
-                  onPressed: () {
+                  onPressed: () async{
 //                    Navigator.pushNamed(context, '/location');
 //                    Navigator.pushReplacementNamed(context, '/location');
-                    Navigator.pop(context);
+//                    Navigator.pop(context);
+                  dynamic result = await Navigator.pushNamed( context,ChooseLocation.routeName );
+                  setState(() {
+                    data = {
+                      'location': result['location'],
+                      'flag': result['flag'],
+                      'isDayTime': result['isDayTime'],
+                      'url': result['url'],
+                      'time': result['time'],
+                    };
+                  });
                   },
                 ),
                 SizedBox(
