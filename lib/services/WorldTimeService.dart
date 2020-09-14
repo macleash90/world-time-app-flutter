@@ -17,14 +17,16 @@ class WorldTimeService {
           await get('http://worldtimeapi.org/api/timezone/$url');
       Map data = jsonDecode(response.body);
 
-      DateTime now = DateTime.parse(data['utc_datetime']);
-      String trimmedOffset = data['utc_offset'].toString().substring(1, 3);
-      now = now.add(Duration(
+      DateTime now = DateTime.parse(data['datetime']);
+      String trimmedOffset = data['utc_offset'].toString().substring(0, 3);
+      now =  now.add(Duration(
         hours: int.parse(trimmedOffset),
       ));
 //      this.time = now.toString();
+//      print('datetime: ${data["datetime"]}');
+//      print("time: ${now.toString()}");
       isDayTime = (now.hour >= 6 && now.hour <= 18) ? true : false;
-      this.time = DateFormat.jm().format(DateTime.now());
+      this.time = DateFormat.jm().format(now);
     } catch (e) {
       time = 'Could not get the time';
     }

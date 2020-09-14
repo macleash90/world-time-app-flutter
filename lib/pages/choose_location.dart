@@ -11,17 +11,16 @@ class ChooseLocation extends StatefulWidget {
 class _ChooseLocationState extends State<ChooseLocation> {
   List<WorldTimeService> locations = [];
 
-  void goToLocation(index) async
-  {
+  void goToLocation(index) async {
     locations[index].getTime();
-    WorldTimeService instance =
-    WorldTimeService(url: locations[index].url);
+    WorldTimeService instance = WorldTimeService(
+        url: locations[index].url, location: locations[index].location,flag: locations[index].flag);
     await instance.getTime();
     Navigator.pushNamed(context, Home.routeName, arguments: {
-      'location': locations[index].location,
-      'flag': locations[index].flag,
-      'isDayTime': locations[index].isDayTime,
-      'url': locations[index].url,
+      'location': instance.location,
+      'flag': instance.flag,
+      'isDayTime': instance.isDayTime,
+      'url': instance.url,
       'time': instance.time,
     });
   }

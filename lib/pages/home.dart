@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     data = ModalRoute.of(context).settings.arguments;
-    print(data);
+//    print(data);
     img = (data['isDayTime']) ? 'day.png' : 'night.png';
     Color bgColor = data['isDayTime'] ? Colors.blue : Colors.indigo;
     return Scaffold(
@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
                   onPressed: () {
 //                    Navigator.pushNamed(context, '/location');
 //                    Navigator.pushReplacementNamed(context, '/location');
-                  Navigator.pop(context);
+                    Navigator.pop(context);
                   },
                 ),
                 SizedBox(
